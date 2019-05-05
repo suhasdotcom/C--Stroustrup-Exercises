@@ -1,0 +1,52 @@
+/*
+ * Complex
+ *
+ *  Created on: 04-May-2019
+ *      Author: suhas
+ */
+
+#ifndef COMPLEX_
+#define COMPLEX_
+
+
+template <typename type> class Complex
+{
+private:
+	type real;
+	type img;
+public:
+	using type = type;
+	using Type = type;
+	Complex() = default;	//default constructor provided
+	Complex(const type &real, const type &img) : real{real}, img{img}{};
+	Complex(const Complex&) = default;
+
+	constexpr type getImg() const
+	{	return img;}
+
+	void setImg(type img)
+	{	this->img = img;}
+
+	constexpr type getReal() const
+	{	return real;}
+
+	void setReal(type real)
+	{	this->real = real;}
+
+	//default copy-constructor provided
+	template <typename type2> Complex(const Complex<type2> &);
+
+	Complex& operator+=(const Complex &arg)
+	{
+		this->real += arg.real;
+		this->img += arg.img;
+		return *this;
+	}
+};
+
+template<typename type> Complex<type> operator+(const Complex<type> &a, const Complex<type> &b);
+template<typename type> Complex<type> operator+(const type &a, const Complex<type> &b);
+template<typename type> Complex<type> operator+(const Complex<type> &a, const type &b);
+
+
+#endif /* COMPLEX_ */
